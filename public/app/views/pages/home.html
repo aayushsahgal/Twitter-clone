@@ -1,0 +1,80 @@
+<style>
+	
+	#panel1{
+		background-color: rgba(60, 118, 61, 0.73);
+	}
+
+	#jumbotron1{
+	background-color: #D7E2C3;
+	}
+
+	#jumbotron2{
+	background-color: #A36D90;
+	}
+
+	#jumbotron3{
+	background-color: #DB4E5B;
+	}
+
+</style>
+
+<div class="jumbotron text-center" id='jumbotron1' ng-if="!main.loggedIn">
+	<div>
+		<h2 style="color:"> A place to connect with all your peers!</h2>
+	</div>
+
+	<div>
+		<p><span class="glyphicon glyphicon-user"></span> Login to tweet</p>
+		<a href="/login" class="btn btn-danger">Login</a>
+	</div>
+</div>
+
+
+
+
+
+
+<div class="row" ng-if="main.loggedIn">
+
+	<div class="col-md-1">
+
+
+	</div>
+
+	<div class="col-md-10" ng-controller="StoryController as story">
+		<div class="row">
+			<div class="panel panel-primary" >
+				<div class="panel-heading" id="panel1">Tweet here!</div>
+
+				<div class="panel-body">
+				<form ng-submit="story.createStory()">
+				<input class="form-control input-lg" type="text" ng-model="story.storyData.content" placeholder="What's on your mind!">
+				
+				</form>
+				</div>
+			</div>
+
+			
+				<div class="panel-body" ng-repeat="each in story.stories | reverse">
+					<blockquote>
+					<p>{{ each.content }}</p>
+					<footer>{{each.creator}} || {{each.created}}</footer>
+				</blockquote>
+				</div>
+
+		</div>
+	</div>
+	<!--<div class="col-md-10">
+	<form role="form">
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" rows="4.5" id="comment"></textarea>
+    </div>-->
+
+	<div class="col-md-1">
+
+
+	</div>
+
+
+</div>
